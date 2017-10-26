@@ -1,5 +1,6 @@
 package com.lanou.bean;
 
+
 import java.util.Date;
 
 public class Cost {
@@ -17,11 +18,13 @@ public class Cost {
 
     private String descr;
 
-    private Date creatime;
+    private String creatime;
 
-    private Date startime;
+    private String startime;
 
     private String costType;
+
+
 
     @Override
     public String toString() {
@@ -33,11 +36,20 @@ public class Cost {
                 ", unitCost=" + unitCost +
                 ", status='" + status + '\'' +
                 ", descr='" + descr + '\'' +
-                ", creatime=" + creatime +
-                ", startime=" + startime +
+                ", creatime='" + creatime + '\'' +
+                ", startime='" + startime + '\'' +
                 ", costType='" + costType + '\'' +
                 '}';
     }
+
+
+//    public Integer getServiceId() {
+//        return serviceId;
+//    }
+//
+//    public void setServiceId(Integer serviceId) {
+//        this.serviceId = serviceId;
+//    }
 
     public Integer getCostId() {
         return costId;
@@ -95,19 +107,19 @@ public class Cost {
         this.descr = descr == null ? null : descr.trim();
     }
 
-    public Date getCreatime() {
+    public String getCreatime() {
         return creatime;
     }
 
-    public void setCreatime(Date creatime) {
+    public void setCreatime(String creatime) {
         this.creatime = creatime;
     }
 
-    public Date getStartime() {
+    public String getStartime() {
         return startime;
     }
 
-    public void setStartime(Date startime) {
+    public void setStartime(String startime) {
         this.startime = startime;
     }
 

@@ -59,10 +59,10 @@
     <column id="41" parent="29" name="account_id">
       <mandatory>1</mandatory>
       <data-type>int(9)|0</data-type>
-      <default-expression>&apos;0&apos;</default-expression>
+      <sequence-identity>1</sequence-identity>
     </column>
     <column id="42" parent="29" name="recommender_id">
-      <data-type>int(9)|0</data-type>
+      <data-type>varchar(30)|0</data-type>
     </column>
     <column id="43" parent="29" name="login_name">
       <mandatory>1</mandatory>
@@ -90,7 +90,7 @@
     </column>
     <column id="50" parent="29" name="idcard_no">
       <mandatory>1</mandatory>
-      <data-type>char(18)|0</data-type>
+      <data-type>varchar(200)|0</data-type>
     </column>
     <column id="51" parent="29" name="birthdate">
       <data-type>datetime|0</data-type>
@@ -183,7 +183,7 @@
       <data-type>int(11)|0</data-type>
     </column>
     <column id="77" parent="32" name="status">
-      <data-type>char(1)|0</data-type>
+      <data-type>char(2)|0</data-type>
     </column>
     <column id="78" parent="32" name="descr">
       <data-type>varchar(100)|0</data-type>
