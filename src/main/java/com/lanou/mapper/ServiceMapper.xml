@@ -52,7 +52,7 @@
 
     <!--添加-->
     <insert id="insertSelective" parameterType="com.lanou.bean.Services">
-        insert into services
+        insert into service
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="serviceId != null">
                 service_id,
@@ -124,11 +124,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM account
-        <where>
-            <if test="idcardNo!=null">
-                and idcard_no LIKE CONCAT('%',#{idcardNo},'%')
-            </if>
-        </where>
+
     </select>
 
 
@@ -193,5 +189,10 @@
     <update id="pauseser" parameterType="com.lanou.bean.Services">
     UPDATE service SET status=0 WHERE service_id=#{serviceId,jdbcType=INTEGER}
    </update>
+
+    <!--查看-->
+    <select id="findbyserid" resultMap="BaseResultMap">
+        SELECT *FROM service WHERE service_id=#{id}
+    </select>
 
 </mapper>

@@ -68,7 +68,8 @@
                 </select>
             </div>
             <div><input type="button" value="搜索" class="btn_search"/></div>
-            <input type="button" value="增加" class="btn_add" onclick="location.href='/seradd';"/>
+            <!--第一步:点击增加进行一个把cost表中的name存到session中-->
+            <input type="button" value="增加" class="btn_add" onclick="findCost()"/>
         </div>
         <!--删除的操作提示-->
         <div id="operate_result_info" class="operate_success">
@@ -95,117 +96,6 @@
 
                 </tbody>
 
-                <!--<tr>-->
-                <!--<td><a href="service_detail.html" title="查看明细">1</a></td>-->
-                <!--<td>101</td>-->
-                <!--<td>230102197902137862</td>-->
-                <!--<td>张三</td>-->
-                <!--<td>openlab1</td>-->
-                <!--<td>开通</td>-->
-                <!--<td>192.168.0.23</td>-->
-                <!--<td>-->
-                <!--<a class="summary" onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包-->
-                <!--20 小时</a>-->
-                <!--&lt;!&ndash;浮动的详细信息&ndash;&gt;-->
-                <!--<div class="detail_info">-->
-                <!--20小时，24.5 元，超出部分 0.03元/分钟-->
-                <!--</div>-->
-                <!--</td>-->
-                <!--<td class="td_modi">-->
-                <!--<input type="button" value="暂停" class="btn_pause" onclick="setState();"/>-->
-                <!--<input type="button" value="修改" class="btn_modify"-->
-                <!--onclick="location.href='service_modi.html';"/>-->
-                <!--<input type="button" value="删除" class="btn_delete" onclick="deleteAccount();"/>-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td><a href="service_detail.html" title="查看明细">2</a></td>-->
-                <!--<td>101</td>-->
-                <!--<td>230102197902137862</td>-->
-                <!--<td>张三</td>-->
-                <!--<td>openlab2</td>-->
-                <!--<td>暂停</td>-->
-                <!--<td>192.168.100.20</td>-->
-                <!--<td>-->
-                <!--<a class="summary" onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包-->
-                <!--40 小时</a>-->
-                <!--&lt;!&ndash;浮动的详细信息&ndash;&gt;-->
-                <!--<div class="detail_info">-->
-                <!--40小时，40.5 元，超出部分 0.03元/分钟-->
-                <!--</div>-->
-                <!--</td>-->
-                <!--<td class="td_modi">-->
-                <!--<input type="button" value="开通" class="btn_start" onclick="setState();"/>-->
-                <!--<input type="button" value="修改" class="btn_modify"-->
-                <!--onclick="location.href='service_modi.html';"/>-->
-                <!--<input type="button" value="删除" class="btn_delete" onclick="deleteAccount();"/>-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td><a href="service_detail.html" title="查看明细">3</a></td>-->
-                <!--<td>101</td>-->
-                <!--<td>230102197902137862</td>-->
-                <!--<td>张三</td>-->
-                <!--<td>openlab3</td>-->
-                <!--<td>删除</td>-->
-                <!--<td>192.168.10.23</td>-->
-                <!--<td>-->
-                <!--<a class="summary" onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包-->
-                <!--60 小时</a>-->
-                <!--&lt;!&ndash;浮动的详细信息&ndash;&gt;-->
-                <!--<div class="detail_info">-->
-                <!--60小时，55 元，超出部分 0.03元/分钟-->
-                <!--</div>-->
-                <!--</td>-->
-                <!--<td class="td_modi">-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td><a href="service_detail.html" title="查看明细">4</a></td>-->
-                <!--<td>102</td>-->
-                <!--<td>230102197902111111</td>-->
-                <!--<td>李四</td>-->
-                <!--<td>openlab1</td>-->
-                <!--<td>开通</td>-->
-                <!--<td>192.168.0.23</td>-->
-                <!--<td>-->
-                <!--<a class="summary" onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包-->
-                <!--20 小时</a>-->
-                <!--&lt;!&ndash;浮动的详细信息&ndash;&gt;-->
-                <!--<div class="detail_info">-->
-                <!--20小时，24.5 元，超出部分 0.03元/分钟-->
-                <!--</div>-->
-                <!--</td>-->
-                <!--<td class="td_modi">-->
-                <!--<input type="button" value="暂停" class="btn_pause" onclick="setState();"/>-->
-                <!--<input type="button" value="修改" class="btn_modify"-->
-                <!--onclick="location.href='service_modi.html';"/>-->
-                <!--<input type="button" value="删除" class="btn_delete" onclick="deleteAccount();"/>-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td><a href="service_detail.html" title="查看明细">5</a></td>-->
-                <!--<td>102</td>-->
-                <!--<td>230102197902137862</td>-->
-                <!--<td>张三</td>-->
-                <!--<td>openlab1</td>-->
-                <!--<td>开通</td>-->
-                <!--<td>192.168.0.23</td>-->
-                <!--<td>-->
-                <!--<a class="summary" onmouseover="showDetail(true,this);" onmouseout="showDetail(false,this);">包-->
-                <!--20 小时</a>-->
-                <!--&lt;!&ndash;浮动的详细信息&ndash;&gt;-->
-                <!--<div class="detail_info">-->
-                <!--20小时，24.5 元，超出部分 0.03元/分钟-->
-                <!--</div>-->
-                <!--</td>-->
-                <!--<td class="td_modi">-->
-                <!--<input type="button" value="暂停" class="btn_pause" onclick="setState();"/>-->
-                <!--<input type="button" value="修改" class="btn_modify"-->
-                <!--onclick="location.href='service_modi.html';"/>-->
-                <!--<input type="button" value="删除" class="btn_delete" onclick="deleteAccount();"/>-->
-                <!--</td>-->
-                <!--</tr>-->
             </table>
             <p>业务说明：<br/>
                 1、创建即开通，记载创建时间；<br/>
@@ -217,15 +107,7 @@
         </div>
         <!--分页-->
         <div id="pages">
-            <!--<a href="#">首页</a>-->
-            <!--<a href="#">上一页</a>-->
-            <!--<a href="#" class="current_page">1</a>-->
-            <!--<a href="#">2</a>-->
-            <!--<a href="#">3</a>-->
-            <!--<a href="#">4</a>-->
-            <!--<a href="#">5</a>-->
-            <!--<a href="#">下一页</a>-->
-            <!--<a href="#">末页</a>-->
+
         </div>
     </form>
 </div>
@@ -358,16 +240,11 @@
                     var b = "开通"
                 }
 
-//                <!--<td><a href="fee_detail.html">包 20 小时</a></td>-->
                 $("#tbody").append($("<tr>" +
-                        "<td>" + "<a href='javascript:;' onclick='see(this)' fid=" + service.accountId + ">" + service.serviceId + "</a>" + "</td>" +
+                        "<td>" + "<a href='javascript:;' onclick='see(this)' fid=" + service.serviceId + ">" + service.serviceId + "</a>" + "</td>" +
                         "<td>" + service.accountId + "</td>" +
-//                "<td>" +  + "</td>" +
-//                "<td>" +  + "</td>" +
-
                         "<td>" + service.account.idcardNo + "</td>" +
                         "<td>" + service.account.realName + "</td>" +
-
                         "<td>" + service.osUsername + "</td>" +
                         "<td>" + a + "</td>" +
                         "<td>" + service.unixHost + "</td>" +
@@ -389,7 +266,6 @@
     function beginser(type) {
         var serviceId = $(type).attr("change")
         var status = $(type).attr("status")
-
         $.ajax({
             type:"post",
             url:"/beginser",
@@ -402,8 +278,34 @@
                 console.log(result.data)
                 window.location.href="/ser"
             }
+        })
+    }
 
+    function see(type) {
+        var serviceId = $(type).attr("fid")
+        $.ajax({
+            type:"post",
+            url:"/seeser",
+            data:{
+                sid:serviceId
+            },
+            success:function (result) {
+                console.log(result.data)
+                window.location.href="/sersee"
+            }
 
+        })
+    }
+
+//  第三步:session中存值后跳转到添加页面
+    function findCost() {
+//        alert("findCost")
+        $.ajax({
+            url:"/findCost",
+            success:function (result) {
+//                alert(result);
+                window.location.href = "/seradd"
+            }
         })
     }
 

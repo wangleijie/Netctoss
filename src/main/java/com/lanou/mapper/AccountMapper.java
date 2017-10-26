@@ -39,7 +39,5 @@ public interface AccountMapper {
     List<Account> searchall(@Param("idcardNo") String idcardNo,@Param("realname") String realname, @Param("logname") String logname);
 
 
-
-
-
+    Account findByIdcard(String idcardNo);
 }

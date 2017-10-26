@@ -8,17 +8,17 @@
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css"/>
     <script language="javascript" type="text/javascript">
         //保存成功的提示信息
-//        function showResult() {
-//            showResultDiv(true);
-//            window.setTimeout("showResultDiv(false);", 3000);
-//        }
-//        function showResultDiv(flag) {
-//            var divResult = document.getElementById("save_result_info");
-//            if (flag)
-//                divResult.style.display = "block";
-//            else
-//                divResult.style.display = "none";
-//        }
+        //        function showResult() {
+        //            showResultDiv(true);
+        //            window.setTimeout("showResultDiv(false);", 3000);
+        //        }
+        //        function showResultDiv(flag) {
+        //            var divResult = document.getElementById("save_result_info");
+        //            if (flag)
+        //                divResult.style.display = "block";
+        //            else
+        //                divResult.style.display = "none";
+        //        }
 
         //自动查询账务账号
         function searchAccounts(txtObj) {
@@ -58,47 +58,44 @@
         <div class="text_info clearfix"><span>身份证：</span></div>
         <div class="input_info">
             <input type="text" value="" class="width180" id="idcard"/>
-            <input type="button" value="查询账务账号" class="btn_search_large" onchange="selectfromidcard()"/>
+            <input type="button" value="查询账务账号" class="btn_search_large" onclick="selectfromidcard()"/>
             <span class="required"></span>
             <div class="validate_msg_short"></div>
         </div>
         <div class="text_info clearfix"><span>账务账号：</span></div>
         <div class="input_info">
             <!--<input type="text" value="zhangsan1" onkeyup="searchAccounts(this);"/>-->
-            <input type="text" value="zhangsan1" id=""/>
+            <input type="text" value="" id="accountId"/>
             <span class="required">*</span>
             <div class="validate_msg_long">没有此账务账号，请重新录入。</div>
         </div>
         <div class="text_info clearfix"><span>资费类型：</span></div>
         <div class="input_info">
-            <select>
-                <option>包 20 小时</option>
-                <option>包 40 小时</option>
-                <option>包 60 小时</option>
-                <option>包月</option>
+            <select id="name">
+
             </select>
         </div>
         <div class="text_info clearfix"><span>服务器 IP：</span></div>
         <div class="input_info">
-            <input type="text" value="192.168.0.23"/>
+            <input type="text" value="" id="IP"/>
             <span class="required">*</span>
             <div class="validate_msg_long">15 长度，符合IP的地址规范</div>
         </div>
         <div class="text_info clearfix"><span>登录 OS 账号：</span></div>
         <div class="input_info">
-            <input type="text" value="创建即启用，状态为开通"/>
+            <input type="text" value="" id="osusername"/>
             <span class="required">*</span>
             <div class="validate_msg_long">8长度以内的字母、数字和下划线的组合</div>
         </div>
         <div class="text_info clearfix"><span>密码：</span></div>
         <div class="input_info">
-            <input type="password"/>
+            <input type="password" id="password"/>
             <span class="required">*</span>
             <div class="validate_msg_long">30长度以内的字母、数字和下划线的组合</div>
         </div>
         <div class="text_info clearfix"><span>重复密码：</span></div>
         <div class="input_info">
-            <input type="password"/>
+            <input type="password" id="rpassword"/>
             <span class="required">*</span>
             <div class="validate_msg_long">两次密码必须相同</div>
         </div>
@@ -122,38 +119,60 @@
 
     function showResult() {
 
+        var accountid =$("#accountid").val();
+        var name = $("#name").val();
+        var ip = $("#ip").val();
+        var osusername = $("#osusername").val();
+        var password = $("#password").val();
+
         $.ajax({
-            type:"post",
-            url:"/addser",
+            url: "/addser",
             data:{
-
-
+                accountId:accountid,
+                costId:name,
+                unixHost:ip,
+                osUsername:osusername,
+                loginPasswd:password
 
             },
-            success:function (result) {
-
+            success: function (result) {
+                var service = result.data;
+                window.location.href = "/ser"
             }
         })
     }
 
+    // 最后获取到账务账号
     function selectfromidcard() {
-
+//        alert("selectfromidcard");
         $.ajax({
-            type:"post",
-            url:"/searchidcard",
-            data:{
-                idcardNo:$("#idcard").val()
+            type: "post",
+            url: "/searchidcard",
+            data: {
+                idcardNo: $("#idcard").val()
             },
-            success:function (result) {
+            success: function (result) {
+//                alert(result.data)
                 console.log(result.data)
+                $("#accountId").val(result.data)
+//                window.location.href = "/seradd"
             }
-
         })
     }
 
-
-
-
+    // 第五步 把Cost中的name取出新建下拉菜单并加到select中
+    function findCostList() {
+//        alert("findCostList");
+        $.ajax({
+            url: "/findCostListS",
+            success: function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    $("<option></option>").text(result[i].name).appendTo($("#name"));
+                }
+            }
+        })
+    }
+    findCostList();
 
 
 </script>

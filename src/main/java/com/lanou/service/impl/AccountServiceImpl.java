@@ -91,5 +91,10 @@ public class AccountServiceImpl implements AccountService {
         return accountMapper.searchall(idcardNo, realname, logname);
     }
 
+    @Override
+    public Account findByIdcard(String idcardNo) {
+        return accountMapper.findByIdcard(idcardNo);
+    }
+
 
 }

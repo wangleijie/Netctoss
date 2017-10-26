@@ -28,4 +28,7 @@ public interface ServiceService {
     // 搜索idcard
     List<Account> searchidcard(String idcardNo);
 
+    // 查看
+    Services serid(Integer id);
+
 }

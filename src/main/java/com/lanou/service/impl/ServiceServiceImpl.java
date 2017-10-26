@@ -81,5 +81,11 @@ public class ServiceServiceImpl implements ServiceService {
         return serviceMapper.servicelist(idcardNo);
     }
 
+    // 查看
+    @Override
+    public Services serid(Integer id) {
+        return serviceMapper.findbyserid(id);
+    }
+
 
 }

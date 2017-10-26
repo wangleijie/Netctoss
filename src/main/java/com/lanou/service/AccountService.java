@@ -37,4 +37,6 @@ public interface AccountService {
 
     // 搜索
     List<Account> searchall(String idcardNo,String realname,String logname);
+
+    Account findByIdcard(String idcardNo);
 }

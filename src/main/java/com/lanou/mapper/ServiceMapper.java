@@ -31,5 +31,8 @@ public interface ServiceMapper {
     // 暂停
     void pauseser(Integer id);
 
+    // 通过id查找services
+    Services findbyserid(Integer id);
+
 
 }
