@@ -40,7 +40,7 @@
         <div class="input_info"><input type="text" value="" readonly class="readonly" id="realname"/></div>
         <div class="text_info clearfix"><span>身份证：</span></div>
         <div class="input_info">
-            <input type="text" value="" readonly class="readonly" id="idcard"/>
+            <input type="text" value="" readonly class="readonly" id="idcard" onchange="getBirthdateByIdCardNo()"/>
         </div>
         <div class="text_info clearfix"><span>登录账号：</span></div>
         <div class="input_info">
@@ -55,11 +55,11 @@
         <div class="text_info clearfix"><span>推荐人身份证号码：</span></div>
         <div class="input_info"><input type="text" readonly class="readonly" value=""/></div>
         <div class="text_info clearfix"><span>状态：</span></div>
-        <div class="input_info" id="status">
-            <select disabled>
-                <option>开通</option>
-                <option>暂停</option>
-                <option>删除</option>
+        <div class="input_info" >
+            <select disabled id="status">
+                <option value="0">开通</option>
+                <option value="1">暂停</option>
+                <option value="2">删除</option>
             </select>
         </div>
         <div class="text_info clearfix"><span>开通/暂停/删除时间：</span></div>
@@ -79,8 +79,8 @@
             <input type="text" class="width350 readonly" readonly value="" id="email"/>
         </div>
         <div class="text_info clearfix"><span>职业：</span></div>
-        <div class="input_info" id="occupation">
-            <select disabled>
+        <div class="input_info" >
+            <select disabled id="occupation">
                 <option>干部</option>
                 <option>学生</option>
                 <option>技术人员</option>
@@ -147,6 +147,15 @@
     }
 
     see();
+
+
+
+    // 通过身份证号码提取生日日期
+    function getBirthdateByIdCardNo() {
+        var idcardNo = $("#idcard").val();
+        var birthdate = idcardNo.substring(6, 10) + "-" + idcardNo.substring(10, 12) + "-" + idcardNo.substring(12, 14);
+        $("#birthdate").val(birthdate);
+    }
 
 
 </script>

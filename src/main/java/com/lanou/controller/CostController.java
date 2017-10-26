@@ -66,7 +66,7 @@ public class CostController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
         String date = dateFormat.format(now);
         cost.setCreatime(date);
-//        cost.setStartime(date);
+        cost.setStartime(date);
         if (cost.getBaseDuration() < 600 && cost.getBaseCost() < 100000 && cost.getUnitCost() < 100000) {
             costService.addNew(cost);
         } else {

@@ -68,7 +68,7 @@
                 </select>
             </div>
             <div><input type="button" value="搜索" class="btn_search"/></div>
-            <input type="button" value="增加" class="btn_add" onclick="location.href='service_add.html';"/>
+            <input type="button" value="增加" class="btn_add" onclick="location.href='/seradd';"/>
         </div>
         <!--删除的操作提示-->
         <div id="operate_result_info" class="operate_success">
@@ -350,12 +350,12 @@
 
             else {
                 if (service.status == 0) {
-                    var a = "停用";
-                    var b = "开启"
+                    var a = "开通";
+                    var b = "暂停"
                 }
-                else {
-                    var a = "开启";
-                    var b = "停用"
+                else if (service.status == 1){
+                    var a = "暂停";
+                    var b = "开通"
                 }
 
 //                <!--<td><a href="fee_detail.html">包 20 小时</a></td>-->
@@ -374,12 +374,13 @@
                         "<td>" + service.cost.descr + "</td>" +
 
                         "<td>" +
-                        "<input type='button' value="+ b +" class='btn_pause' onclick='beginser();' status="+ a+" change ="+service.serviceId +"/>" +
+                        "<input type='button' value="+ b +" class='btn_pause' onclick='beginser(this);' status="+ a+" change ="+service.serviceId +">" +
                         "<input type='button' value='修改' class='btn_modify' onclick='location.href='service_modi.html'>" +
                         "<input type='button' value='删除' class='btn_delete' onclick='deleteAccount();'>"
                         + "</td>"
 
                         + "</tr>"))
+
 
             }
         }

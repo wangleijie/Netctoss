@@ -49,6 +49,8 @@
       #{createDate,jdbcType=TIMESTAMP}, #{pauseDate,jdbcType=TIMESTAMP}, #{closeDate,jdbcType=TIMESTAMP}, 
       #{costId,jdbcType=INTEGER})
   </insert>
+
+    <!--添加-->
     <insert id="insertSelective" parameterType="com.lanou.bean.Services">
         insert into services
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -116,6 +118,20 @@
             </if>
         </trim>
     </insert>
+
+<!--查寻idcard-->
+    <select id="servicelist" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM account
+        <where>
+            <if test="idcardNo!=null">
+                and idcard_no LIKE CONCAT('%',#{idcardNo},'%')
+            </if>
+        </where>
+    </select>
+
+
     <update id="updateByPrimaryKeySelective" parameterType="com.lanou.bean.Services">
         update services
         <set>
@@ -170,12 +186,12 @@
 
     <!--开启-->
     <update id="biginser" parameterType="com.lanou.bean.Services">
-    UPDATE service  SET status=1 WHERE service_id=#{id}
+    UPDATE service  SET status=1 WHERE service_id=#{serviceId,jdbcType=INTEGER}
   </update>
 
     <!--暂停-->
     <update id="pauseser" parameterType="com.lanou.bean.Services">
-    UPDATE service SET status=0 WHERE service_id=#{id}
+    UPDATE service SET status=0 WHERE service_id=#{serviceId,jdbcType=INTEGER}
    </update>
 
 </mapper>

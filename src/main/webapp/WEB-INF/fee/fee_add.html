@@ -161,20 +161,9 @@
             },
 
             success:function (result) {
-                if(baseduration>600){
-                    $("#aaa").html("*1-600之间的整数")
-                }
-                if (basecost>999999.99){
-                    $("#bbb").html("*0-99999.99之间的数值")
-                }
-                if(unitcost>999999.99){
-                    $("#ccc").html("*0-99999.99之间的数值")
-                }
-                if (baseduration < 600 &&basecost<999999.99&&unitcost<999999.99){
-
                     console.log(result.data);
                     window.location.href="/home";
-                }
+
 
             }
 

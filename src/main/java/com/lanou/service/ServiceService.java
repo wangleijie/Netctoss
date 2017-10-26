@@ -3,6 +3,7 @@ package com.lanou.service;
 
 import com.github.pagehelper.PageInfo;
 
+import com.lanou.bean.Account;
 import com.lanou.bean.Services;
 
 import java.util.List;
@@ -21,4 +22,10 @@ public interface ServiceService {
 
     // 启用
     void beginser(Integer id,String status);
+
+    // 添加
+    void addser(Services services);
+    // 搜索idcard
+    List<Account> searchidcard(String idcardNo);
+
 }

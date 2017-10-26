@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +28,9 @@ public class ServiceController {
     public String ser(){
         return "/service/service_list";
     }
+
+    @RequestMapping(value = "/seradd")
+    public String seradd(){ return "/service/service_add";}
 
 
 
@@ -62,9 +67,42 @@ public class ServiceController {
                                @RequestParam("status") String status){
 
         serviceService.beginser(id, status);
+        Services services = new Services();
+        System.out.println(111 + status);
         return new AjaxResult(id);
-
     }
+
+
+    // 添加
+    @ResponseBody
+    @RequestMapping(value = "/addser",method = RequestMethod.POST)
+    public AjaxResult addser(Services services){
+
+
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
+        String date1 = dateFormat.format(now);
+        services.setCreateDate(date1);
+        services.setStatus("0");
+
+        serviceService.addser(services);
+        return new AjaxResult(services);
+    }
+
+    //添加中查询idcard
+    @ResponseBody
+    @RequestMapping(value = "/searchidcard",method = RequestMethod.POST)
+    public AjaxResult searchidcard(@RequestParam("idcardNo") String idcardNo){
+
+        serviceService.searchidcard(idcardNo);
+
+        return new AjaxResult(idcardNo);
+    }
+
+
+
+
+
 
 
 

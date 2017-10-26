@@ -2,6 +2,7 @@ package com.lanou.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lanou.bean.Account;
 import com.lanou.bean.Services;
 import com.lanou.mapper.ServiceMapper;
 import com.lanou.service.ServiceService;
@@ -67,6 +68,17 @@ public class ServiceServiceImpl implements ServiceService {
         if (status.equals("暂停")){
             serviceMapper.pauseser(id);
         }
+    }
+
+    // 添加
+    @Override
+    public void addser(Services services) {
+        serviceMapper.insertSelective(services);
+    }
+
+    @Override
+    public List<Account> searchidcard(String idcardNo) {
+        return serviceMapper.servicelist(idcardNo);
     }
 
 

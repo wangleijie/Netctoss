@@ -39,9 +39,9 @@
         <div class="input_info"><input type="text" class="readonly" readonly value="" id="name"/></div>
         <div class="text_info clearfix"><span>资费状态：</span></div>
         <div class="input_info">
-            <select class="readonly" disabled>
-                <option>开通</option>
-                <option>暂停</option>
+            <select class="readonly" id="status">
+                <option value="0">开通</option>
+                <option value="1">暂停</option>
                 <option>删除</option>
             </select>
         </div>
@@ -118,6 +118,7 @@
                 $("#baseDuration").val(cost.baseDuration)
                 $("#baseCost").val(cost.baseCost)
                 $("#unitCost").val(cost.unitCost)
+                $("#status").val(cost.status)
                 $("#creatime").val(cost.creatime)
                 $("#startime").val(cost.startime)
                 $("#descr").html(cost.descr)

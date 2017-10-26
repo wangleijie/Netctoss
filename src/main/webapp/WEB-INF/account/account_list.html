@@ -340,6 +340,7 @@
         })
     }
 
+
 //查询
     function searchacc() {
         console.log(11111111)
@@ -419,80 +420,6 @@
 
 
 
-
-//
-//    // 搜索
-//    function searchacc() {
-//        $("#tbody").children().remove();
-//
-//        $.ajax({
-//            type:"post",
-//            url:"/searchacc",
-//            data:{
-//                search:$("#seachidcard").val()
-//            },
-//            success:function (result) {
-//                var findAllacc = result;
-//                for (var i = 0; i < findAllacc.length; i++) {
-//                    var account = findAllacc[i];
-//
-//                    if (account.status == 2){
-//                        var c = "删除";
-//                        $("#tbody").append($("<tr>" +
-//
-//                                "<td>" + account.accountId + "</td>" +
-//                                "<td>" + "<<a href='javascript:;' onclick='seeacc(this)' sid="+account.accountId +">"+ account.realName+"</a>"  + "</td>" +
-//                                "<td>" + account.idcardNo + "</td>" +
-//                                "<td>" + account.loginName + "</td>" +
-//                                "<td>" + c + "</td>" +
-//                                "<td>" + account.createDate + "</td>" +
-//                                "<td>" + account.pauseDate + "</td>" +
-//
-//                                "<td>" +
-////                        "<input type='button' value="+ b +" class='btn_start' onclick='setAcc(this)' beginacc="+ account.accountId+" >" +
-////                        "<input type='button' value='修改' class='btn_modify' onclick='updateAcc(this)' updateacc="+ account.accountId+">" +
-////                        "<input type='button' value='删除' class='btn_delete' onclick='deleteAcc(this)' deleteaccid="+ account.accountId+">"
-//                                + "</td>" + +"</tr>"))
-//
-//                    }
-//                    else {
-//
-//                        if(account.status == 0){
-//                            var a = "开通"
-//                            var b = "暂停"
-//                        } else if(account.status == 1){
-//                            var a = "暂停"
-//                            var b = "开通"
-//
-//                        }
-//
-//
-//                        $("#tbody").append($("<tr>" +
-//
-//                                "<td>" + account.accountId + "</td>" +
-//                                "<td>" + "<<a href='javascript:;' onclick='seeacc(this)' sid="+account.accountId +">"+ account.realName+"</a>"  + "</td>" +
-//                                "<td>" + account.idcardNo + "</td>" +
-//                                "<td>" + account.loginName + "</td>" +
-//                                "<td>" + a + "</td>" +
-//                                "<td>" + account.createDate + "</td>" +
-//                                "<td>" + account.pauseDate + "</td>" +
-//
-//                                "<td>" +
-//                                "<input type='button' value="+ b +" class='btn_start' onclick='setAcc(this)' status='"+a+"' beginacc="+ account.accountId+" >" +
-//                                "<input type='button' value='修改' class='btn_modify' onclick='updateAcc(this)' updateacc="+ account.accountId+">" +
-//                                "<input type='button' value='删除' class='btn_delete' onclick='deleteAcc(this)' deleteaccid="+ account.accountId+">"
-//                                + "</td>" + +"</tr>"))
-//
-//                    }
-//                }
-//
-//
-//
-//            }
-//
-//
-//        })
-//    }
 
 
 
