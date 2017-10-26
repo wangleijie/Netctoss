@@ -127,9 +127,9 @@
 
     </select>
 
-
+<!--修改-->
     <update id="updateByPrimaryKeySelective" parameterType="com.lanou.bean.Services">
-        update services
+        update service
         <set>
             <if test="accountId != null">
                 account_id = #{accountId,jdbcType=INTEGER},
@@ -194,5 +194,10 @@
     <select id="findbyserid" resultMap="BaseResultMap">
         SELECT *FROM service WHERE service_id=#{id}
     </select>
+
+    <!--删除-->
+    <update id="deleteByserid" parameterType="com.lanou.bean.Services">
+        UPDATE service SET status=2 WHERE service_id=#{serviceId,jdbcType=INTEGER}
+    </update>
 
 </mapper>

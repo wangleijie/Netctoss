@@ -87,5 +87,21 @@ public class ServiceServiceImpl implements ServiceService {
         return serviceMapper.findbyserid(id);
     }
 
+    // 删除
+    @Override
+    public void deletserid(Integer id) {
+        serviceMapper.deleteByserid(id);
+    }
+
+
+    // 修改
+    @Override
+    public void updateser(Services services) {
+        serviceMapper.updateByPrimaryKeySelective(services);
+    }
+
+
+
+
 
 }

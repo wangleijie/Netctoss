@@ -18,7 +18,8 @@ public interface ServiceMapper {
 
     Services selectByPrimaryKey(Integer serviceId);
 
-    int updateByPrimaryKeySelective(Services record);
+    // 修改
+    int updateByPrimaryKeySelective(Services services);
 
     int updateByPrimaryKey(Services record);
 
@@ -34,5 +35,7 @@ public interface ServiceMapper {
     // 通过id查找services
     Services findbyserid(Integer id);
 
+    // 删除
+    void deleteByserid(Integer id);
 
 }

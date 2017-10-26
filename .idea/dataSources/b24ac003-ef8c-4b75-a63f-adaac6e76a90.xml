@@ -238,7 +238,7 @@
     <column id="91" parent="36" name="service_id">
       <mandatory>1</mandatory>
       <data-type>int(10)|0</data-type>
-      <default-expression>&apos;0&apos;</default-expression>
+      <sequence-identity>1</sequence-identity>
     </column>
     <column id="92" parent="36" name="account_id">
       <mandatory>1</mandatory>

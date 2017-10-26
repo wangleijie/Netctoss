@@ -8,24 +8,24 @@
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css"/>
     <script language="javascript" type="text/javascript">
         //显示角色详细信息
-        function showDetail(flag, a) {
-            var detailDiv = a.parentNode.getElementsByTagName("div")[0];
-            if (flag) {
-                detailDiv.style.display = "block";
-            }
-            else
-                detailDiv.style.display = "none";
-        }
-        //删除
-        function deleteAccount() {
-            var r = window.confirm("确定要删除此业务账号吗？删除后将不能恢复。");
-            document.getElementById("operate_result_info").style.display = "block";
-        }
-        //开通或暂停
-        function setState() {
-            var r = window.confirm("确定要开通此业务账号吗？");
-            document.getElementById("operate_result_info").style.display = "block";
-        }
+//        function showDetail(flag, a) {
+//            var detailDiv = a.parentNode.getElementsByTagName("div")[0];
+//            if (flag) {
+//                detailDiv.style.display = "block";
+//            }
+//            else
+//                detailDiv.style.display = "none";
+//        }
+//        //删除
+//        function deleteAccount() {
+//            var r = window.confirm("确定要删除此业务账号吗？删除后将不能恢复。");
+//            document.getElementById("operate_result_info").style.display = "block";
+//        }
+//        //开通或暂停
+//        function setState() {
+//            var r = window.confirm("确定要开通此业务账号吗？");
+//            document.getElementById("operate_result_info").style.display = "block";
+//        }
     </script>
 </head>
 <body>
@@ -220,11 +220,7 @@
                         "<td>" + service.unixHost + "</td>" +
                         "<td>" + service.cost.descr + "</td>" +
 
-                        "<td>" +
-//                        "<input type='button' value='暂停' class='btn_pause' onclick='setState();'/>" +
-//                        "<input type='button' value='修改' class='btn_modify' onclick='location.href='service_modi.html'>" +
-//                        "<input type='button' value='删除' class='btn_delete' onclick='deleteAccount();'>"
-                        + "</td>"
+                        "<td>" + "</td>"
 
                         + "</tr>"))
             }
@@ -252,8 +248,8 @@
 
                         "<td>" +
                         "<input type='button' value="+ b +" class='btn_pause' onclick='beginser(this);' status="+ a+" change ="+service.serviceId +">" +
-                        "<input type='button' value='修改' class='btn_modify' onclick='location.href='service_modi.html'>" +
-                        "<input type='button' value='删除' class='btn_delete' onclick='deleteAccount();'>"
+                        "<input type='button' value='修改' class='btn_modify' onclick='updateser(this);' updateid="+ service.serviceId+ ">" +
+                        "<input type='button' value='删除' class='btn_delete' onclick='deleteAccount(this);' delserid="+service.serviceId +">"
                         + "</td>"
 
                         + "</tr>"))
@@ -263,6 +259,7 @@
         }
     }
 
+    // 开启
     function beginser(type) {
         var serviceId = $(type).attr("change")
         var status = $(type).attr("status")
@@ -281,6 +278,41 @@
         })
     }
 
+    // 修改
+    function updateser(type) {
+        var serviceId = $(type).attr("updateid")
+        $.ajax({
+            type:"post",
+            url:"/changeser",
+            data:{
+                serid:serviceId
+            },
+            success:function (result) {
+                console.log(result.data)
+                window.location.href="/sermodi"
+            }
+        })
+    }
+
+
+
+    // 删除
+    function deleteAccount(type) {
+        var serviceId = $(type).attr("delserid")
+
+        $.ajax({
+            url:"/delser",
+            data:{
+                delserid:serviceId
+            },
+            success:function (result) {
+                window.location.href="/ser"
+            }
+        })
+    }
+
+
+    // 查看
     function see(type) {
         var serviceId = $(type).attr("fid")
         $.ajax({
@@ -301,6 +333,7 @@
     function findCost() {
 //        alert("findCost")
         $.ajax({
+            type:"post",
             url:"/findCost",
             success:function (result) {
 //                alert(result);

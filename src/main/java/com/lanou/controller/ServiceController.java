@@ -49,6 +49,9 @@ public class ServiceController {
         return "/service/service_detail";
     }
 
+    @RequestMapping(value = "/sermodi")
+    public String serdetail(){ return "/service/service_modi";}
+
 
     // 显示所有
     @ResponseBody
@@ -100,11 +103,11 @@ public class ServiceController {
         String date1 = dateFormat.format(now);
         services.setCreateDate(date1);
         services.setStatus("0");
-
+//        services.setServiceId(1234);
+//        services.setCostId(8);
         System.out.println(services);
 
         serviceService.addser(services);
-
 
         return new AjaxResult(services);
     }
@@ -124,26 +127,26 @@ public class ServiceController {
 
     //  第二步:把Cost中的值存到session中,并返回
     @ResponseBody
-    @RequestMapping(value = "/findCost")
+    @RequestMapping(value = "/findCost",method = RequestMethod.POST)
     public String findCost(HttpServletRequest request) {
         List<Cost> costs = costService.findAll();
-        System.out.println(costs);
+//        System.out.println(costs);
         request.getSession().setAttribute("findCostList", costs);
         return "";
     }
 
     // 第四步: 取出session中的Cost值, 并返回
     @ResponseBody
-    @RequestMapping(value = "/findCostListS")
+    @RequestMapping(value = "/findCostListS",method = RequestMethod.POST)
     public List<Cost> findCostListS(HttpServletRequest request) {
 
-//        List<Cost> costs = (List<Cost>) request.getSession().getAttribute("findCostList");
-//        for (Cost cost : costs) {
-//            System.out.println(cost.getName());
-//        }
-//        return costs;
+        List<Cost> costs = (List<Cost>) request.getSession().getAttribute("findCostList");
+        for (Cost cost : costs) {
+            System.out.println(cost.getName());
+        }
+        return costs;
 
-        return (List<Cost>) request.getSession().getAttribute("findCostList");
+//        return (List<Cost>) request.getSession().getAttribute("findCostList");
     }
 
 
@@ -164,9 +167,44 @@ public class ServiceController {
         HttpSession session = request.getSession();
         Integer serid = (Integer) session.getAttribute("sid");
         Services services = serviceService.serid(serid);
-        System.out.println(services);
+//        System.out.println(services);
         return new AjaxResult(services);
     }
+
+    // 删除
+    @ResponseBody
+    @RequestMapping(value = "/delser")
+    public AjaxResult delser(@RequestParam("delserid") Integer id){
+        serviceService.deletserid(id);
+        return new AjaxResult(id);
+    }
+
+    // 修改
+    // 点击根据id获取
+    @ResponseBody
+    @RequestMapping(value = "/changeser", method = RequestMethod.POST)
+    public void changeser(@RequestParam("serid") Integer id,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("serid",id);
+    }
+
+    // 通过id查出来Service
+    @ResponseBody
+    @RequestMapping(value = "/findbySerid", method = RequestMethod.POST)
+    public AjaxResult findbySerid(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Integer serid = (Integer) session.getAttribute("serid");
+        Services services = serviceService.serid(serid);
+        return new AjaxResult(services);
+    }
+
+    // 修改Service
+    @ResponseBody
+    @RequestMapping(value = "/updateser", method = RequestMethod.POST)
+    public void updateser(Services services){
+        serviceService.updateser(services);
+    }
+
 
 
 }

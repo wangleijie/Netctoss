@@ -23,9 +23,6 @@
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
     <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
 
-    <!--<association property="services" column="service_id"-->
-                 <!--javaType="com.lanou.bean.Services"-->
-                 <!--select="com.lanou.mapper.ServiceMapper.findallservice"/>-->
 
 
 

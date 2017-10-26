@@ -162,7 +162,6 @@ public class AccountController {
     @RequestMapping(value = "/findaccountbyid")
     public AjaxResult findaccountbyid(HttpSession session) {
 
-
         Integer accid = (Integer) session.getAttribute("accid");
         Account account = accountService.seebyid(accid);
         return new AjaxResult(account);

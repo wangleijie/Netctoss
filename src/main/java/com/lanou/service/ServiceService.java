@@ -31,4 +31,10 @@ public interface ServiceService {
     // 查看
     Services serid(Integer id);
 
+    // 删除
+    void deletserid(Integer id);
+
+    // 修改
+    void updateser(Services services);
+
 }
