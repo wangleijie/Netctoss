@@ -93,15 +93,17 @@ public class ServiceServiceImpl implements ServiceService {
         serviceMapper.deleteByserid(id);
     }
 
-
     // 修改
     @Override
     public void updateser(Services services) {
         serviceMapper.updateByPrimaryKeySelective(services);
     }
 
-
-
+    // 搜索
+    @Override
+    public List<Services> searchforall(String osusername, String unixHost, String idcard) {
+        return serviceMapper.seachforall(osusername, unixHost, idcard);
+    }
 
 
 }

@@ -36,7 +36,9 @@ public interface AccountMapper {
     Account seebyid(Integer id);
 
     // 搜索
-    List<Account> searchall(@Param("idcardNo") String idcardNo,@Param("realname") String realname, @Param("logname") String logname);
+    List<Account> searchall(@Param("idcardNo") String idcardNo,
+                            @Param("realname") String realname,
+                            @Param("logname") String logname);
 
 
     Account findByIdcard(String idcardNo);

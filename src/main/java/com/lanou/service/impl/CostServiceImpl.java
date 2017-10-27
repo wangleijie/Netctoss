@@ -86,9 +86,16 @@ public class CostServiceImpl implements CostService {
 
     }
 
-
     public PageInfo<Cost> pageinfo(Integer pageSize) {
         return queryCostByPage(null,pageSize);
+    }
+
+
+
+
+    @Override
+    public Cost findByCostname(String costname) {
+        return costMapper.findByCostname(costname);
     }
 
 }

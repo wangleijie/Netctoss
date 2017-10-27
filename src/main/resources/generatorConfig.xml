@@ -39,7 +39,7 @@
         <!--</javaClientGenerator>-->
         <!--&lt;!&ndash;tableName表名&ndash;&gt;-->
         <!--&lt;!&ndash; !!!! Table Configurations !!!! &ndash;&gt;-->
-        <!--<table tableName="services" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--<table tableName="module_info" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
                <!--enableUpdateByExample="false"/>-->
     <!--</context>-->
 <!--</generatorConfiguration>-->

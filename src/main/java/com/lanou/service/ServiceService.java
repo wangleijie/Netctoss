@@ -37,4 +37,7 @@ public interface ServiceService {
     // 修改
     void updateser(Services services);
 
+    // 搜索
+    List<Services> searchforall(String osusername, String unixHost,String idcard);
+
 }

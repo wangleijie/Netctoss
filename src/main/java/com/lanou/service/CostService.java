@@ -21,13 +21,13 @@ public interface CostService {
 
     void begin(Integer costId);
 
-
-
     void updataCost(Cost cost);
 
     //分页
     List<Cost> findWithPageInfo(Integer pageNum,Integer pageSize);
-
-
     PageInfo<Cost> pageinfo(Integer pageSize);
+
+
+    // 根据costname查
+    Cost findByCostname(String costname);
 }

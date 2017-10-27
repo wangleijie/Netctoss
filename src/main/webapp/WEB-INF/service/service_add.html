@@ -70,6 +70,8 @@
             <div class="validate_msg_long">没有此账务账号，请重新录入。</div>
         </div>
         <div class="text_info clearfix"><span>资费类型：</span></div>
+
+        <!--costname 下拉栏-->
         <div class="input_info">
             <select id="name">
 
@@ -96,8 +98,8 @@
         <div class="text_info clearfix"><span>重复密码：</span></div>
         <div class="input_info">
             <input type="password" id="rpassword"/>
-            <span class="required">*</span>
-            <div class="validate_msg_long">两次密码必须相同</div>
+            <span class="required"></span>
+            <div class="validate_msg_long" id="qwer"></div>
         </div>
         <!--操作按钮-->
         <div class="button_info clearfix">
@@ -120,11 +122,12 @@
     function addser() {
 
         var accountid =$("#accountId").val();
-//        var name = $("#name option:selected").val();
+        var name = $("#name option:selected").val();
         var ip = $("#ip").val();
         var osusername = $("#osusername").val();
         var password = $("#password").val();
-        var costId = $("#name option:selected").attr("costId");
+        var rpassword=$("#rpassword").val();
+
         $.ajax({
             type:"post",
             url: "/addser",
@@ -133,17 +136,23 @@
                 unixHost:ip,
                 osUsername:osusername,
                 loginPasswd:password,
-                costId:costId
-
+                costname:name,
+                rpassword:rpassword
             },
             success: function (result) {
-                var service = result.data;
-                window.location.href = "/ser"
+
+                if (result.data == 0){
+                    $("#qwer").html("两次密码不同")
+                }
+                if (result.data == 1){
+                    window.location.href="/ser"
+                }
+
             }
         })
     }
 
-    // 最后获取到账务账号
+    // 获取到账务账号
     function selectfromidcard() {
 //        alert("selectfromidcard");
         $.ajax({
@@ -160,6 +169,9 @@
             }
         })
     }
+
+
+
 
     // 第五步 把Cost中的name取出新建下拉菜单并加到select中
     function findCostList() {

@@ -20,9 +20,6 @@ public interface AccountService {
     List<Account> findWithPageInfo(Integer pageNum, Integer pageSize);
     PageInfo<Account> pageinfo(Integer pageSize);
 
-    // 添加
-    void addacc(Account account);
-
     // 删除
     void deleteacc(Integer id);
 
@@ -38,5 +35,12 @@ public interface AccountService {
     // 搜索
     List<Account> searchall(String idcardNo,String realname,String logname);
 
+    // 添加
+    void addacc(Account account);
+
+    // 根据idcard查
     Account findByIdcard(String idcardNo);
+
+
+
 }

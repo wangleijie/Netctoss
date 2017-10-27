@@ -87,7 +87,7 @@ public class ServiceController {
                                @RequestParam("status") String status) {
 
         serviceService.beginser(id, status);
-        Services services = new Services();
+//        Services services = new Services();
         System.out.println(111 + status);
         return new AjaxResult(id);
     }
@@ -96,23 +96,28 @@ public class ServiceController {
     // 添加
     @ResponseBody
     @RequestMapping(value = "/addser", method = {RequestMethod.POST, RequestMethod.GET})
-    public AjaxResult addser(Services services) {
+    public AjaxResult addser(Services services,
+                             @RequestParam("costname") String costname,
+                             @RequestParam("rpassword") String rpassword) {
 
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");//可以方便地修改日期格式
         String date1 = dateFormat.format(now);
         services.setCreateDate(date1);
         services.setStatus("0");
-//        services.setServiceId(1234);
-//        services.setCostId(8);
-        System.out.println(services);
 
+        // 通过costname查出costid,并存到services中
+        Cost cost  = costService.findByCostname(costname);
+        services.setCostId(cost.getCostId());
         serviceService.addser(services);
+        if (services.getLoginPasswd() != rpassword){
+            return new AjaxResult(0);
+        }
 
-        return new AjaxResult(services);
+        return new AjaxResult(1);
     }
 
-    //添加中通过idcard查找账务账号
+    //添加中通过idcard查找accountId
     @ResponseBody
     @RequestMapping(value = "/searchidcard", method = RequestMethod.POST)
     public AjaxResult searchidcard(@RequestParam("idcardNo") String idcardNo) {
@@ -123,6 +128,7 @@ public class ServiceController {
         // 并且返回accountId
         return new AjaxResult(account.getAccountId());
     }
+
 
 
     //  第二步:把Cost中的值存到session中,并返回
@@ -140,13 +146,13 @@ public class ServiceController {
     @RequestMapping(value = "/findCostListS",method = RequestMethod.POST)
     public List<Cost> findCostListS(HttpServletRequest request) {
 
-        List<Cost> costs = (List<Cost>) request.getSession().getAttribute("findCostList");
-        for (Cost cost : costs) {
-            System.out.println(cost.getName());
-        }
-        return costs;
+//        List<Cost> costs = (List<Cost>) request.getSession().getAttribute("findCostList");
+//        for (Cost cost : costs) {
+//            System.out.println(cost.getName());
+//        }
+//        return costs;
 
-//        return (List<Cost>) request.getSession().getAttribute("findCostList");
+        return (List<Cost>) request.getSession().getAttribute("findCostList");
     }
 
 
@@ -204,6 +210,23 @@ public class ServiceController {
     public void updateser(Services services){
         serviceService.updateser(services);
     }
+
+
+    // 模糊查询
+    @ResponseBody
+    @RequestMapping(value = "/abcd", method = RequestMethod.POST)
+    public AjaxResult seachforall(@RequestParam("osUsername") String osusername,
+                                  @RequestParam("unixHost") String unixHost,
+                                  @RequestParam("idcardNo") String idcard){
+
+//        System.out.println(1111);
+//        return null;
+        List<Services> servicesList = serviceService.searchforall(osusername, unixHost, idcard);
+        System.out.println(servicesList);
+        return new AjaxResult(servicesList);
+
+    }
+
 
 
 

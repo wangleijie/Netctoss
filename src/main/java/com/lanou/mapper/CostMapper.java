@@ -36,6 +36,8 @@ public interface CostMapper {
     String updaestatus(Integer costId);
 
 
+    //
+    Cost findByCostname(String costname);
 
 
 }

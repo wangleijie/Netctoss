@@ -200,4 +200,22 @@
         UPDATE service SET status=2 WHERE service_id=#{serviceId,jdbcType=INTEGER}
     </update>
 
+    <!--搜索(对于idcard:现在account表中查出来)-->
+    <select id="seachforall" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM service
+        <where>
+            <if test="osusername!=null">
+                and os_username LIKE CONCAT('%',#{osusername},'%')
+            </if>
+            <if test="unixHost!=null">
+                and unix_host LIKE CONCAT('%',#{unixHost},'%')
+            </if>
+            <if test="idcard!=null">
+                and  account_id in(select account_id from account where idcard_no LIKE CONCAT('%',#{idcard},'%'))
+            </if>
+        </where>
+    </select>
+
 </mapper>

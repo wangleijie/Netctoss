@@ -2,6 +2,8 @@ package com.lanou.mapper;
 
 import com.lanou.bean.Account;
 import com.lanou.bean.Services;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,4 +40,13 @@ public interface ServiceMapper {
     // 删除
     void deleteByserid(Integer id);
 
+    // 搜索
+    List<Services> seachforall(@Param("osusername") String osusername,
+                               @Param("unixHost") String unixHost,
+                               @Param("idcard") String idcard);
+
+
 }
+
+
+

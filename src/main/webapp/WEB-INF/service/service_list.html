@@ -8,24 +8,24 @@
     <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css"/>
     <script language="javascript" type="text/javascript">
         //显示角色详细信息
-//        function showDetail(flag, a) {
-//            var detailDiv = a.parentNode.getElementsByTagName("div")[0];
-//            if (flag) {
-//                detailDiv.style.display = "block";
-//            }
-//            else
-//                detailDiv.style.display = "none";
-//        }
-//        //删除
-//        function deleteAccount() {
-//            var r = window.confirm("确定要删除此业务账号吗？删除后将不能恢复。");
-//            document.getElementById("operate_result_info").style.display = "block";
-//        }
-//        //开通或暂停
-//        function setState() {
-//            var r = window.confirm("确定要开通此业务账号吗？");
-//            document.getElementById("operate_result_info").style.display = "block";
-//        }
+        //        function showDetail(flag, a) {
+        //            var detailDiv = a.parentNode.getElementsByTagName("div")[0];
+        //            if (flag) {
+        //                detailDiv.style.display = "block";
+        //            }
+        //            else
+        //                detailDiv.style.display = "none";
+        //        }
+        //        //删除
+        //        function deleteAccount() {
+        //            var r = window.confirm("确定要删除此业务账号吗？删除后将不能恢复。");
+        //            document.getElementById("operate_result_info").style.display = "block";
+        //        }
+        //        //开通或暂停
+        //        function setState() {
+        //            var r = window.confirm("确定要开通此业务账号吗？");
+        //            document.getElementById("operate_result_info").style.display = "block";
+        //        }
     </script>
 </head>
 <body>
@@ -38,12 +38,12 @@
 <!--导航区域开始-->
 <div id="navi">
     <ul id="menu">
-        <li><a href="../index.html" class="index_off"></a></li>
-        <li><a href="../role/role_list.html" class="role_off"></a></li>
+        <li><a href="/index" class="index_off"></a></li>
+        <li><a href="/role" class="role_off"></a></li>
         <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
-        <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
-        <li><a href="../account/account_list.html" class="account_off"></a></li>
-        <li><a href="../services/service_list.html" class="service_on"></a></li>
+        <li><a href="/home" class="fee_on"></a></li>
+        <li><a href="/acc" class="account_off"></a></li>
+        <li><a href="/ser" class="service_off"></a></li>
         <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
         <li><a href="../report/report_list.html" class="report_off"></a></li>
         <li><a href="../user/user_info.html" class="information_off"></a></li>
@@ -53,63 +53,63 @@
 <!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
-    <form action="" method="">
-        <!--查询-->
-        <div class="search_add">
-            <div>OS 账号：<input type="text" value="" class="width100 text_search"/></div>
-            <div>服务器 IP：<input type="text" value="" class="width100 text_search"/></div>
-            <div>身份证：<input type="text" value="" class="text_search"/></div>
-            <div>状态：
-                <select class="select_search">
-                    <option>全部</option>
-                    <option>开通</option>
-                    <option>暂停</option>
-                    <option>删除</option>
-                </select>
-            </div>
-            <div><input type="button" value="搜索" class="btn_search"/></div>
-            <!--第一步:点击增加进行一个把cost表中的name存到session中-->
-            <input type="button" value="增加" class="btn_add" onclick="findCost()"/>
-        </div>
-        <!--删除的操作提示-->
-        <div id="operate_result_info" class="operate_success">
-            <img src="../images/close.png" onclick="this.parentNode.style.display='none';"/>
-            删除成功！
-        </div>
-        <!--数据区域：用表格展示数据-->
-        <div id="data">
-            <table id="datalist">
-                <thead>
-                <tr>
-                    <th class="width50">业务ID</th>
-                    <th class="width70">账务账号ID</th>
-                    <th class="width150">身份证</th>
-                    <th class="width70">姓名</th>
-                    <th>OS 账号</th>
-                    <th class="width50">状态</th>
-                    <th class="width100">服务器 IP</th>
-                    <th class="width100">资费</th>
-                    <th class="width200"></th>
-                </tr>
-                </thead>
-                <tbody id="tbody">
 
-                </tbody>
-
-            </table>
-            <p>业务说明：<br/>
-                1、创建即开通，记载创建时间；<br/>
-                2、暂停后，记载暂停时间；<br/>
-                3、重新开通后，删除暂停时间；<br/>
-                4、删除后，记载删除时间，标示为删除，不能再开通、修改、删除；<br/>
-                5、业务账号不设计修改密码功能，由用户自服务功能实现；<br/>
-                6、暂停和删除状态的账务账号下属的业务账号不能被开通。</p>
+    <!--查询-->
+    <div class="search_add">
+        <div>OS 账号：<input type="text" value="" class="width100 text_search" id="osusername"></div>
+        <div>服务器 IP：<input type="text" value="" class="width100 text_search" id="unixHost"></div>
+        <div>身份证：<input type="text" value="" class="text_search" id="idcard"></div>
+        <div>状态：
+            <select class="select_search">
+                <option>全部</option>
+                <option>开通</option>
+                <option>暂停</option>
+                <option>删除</option>
+            </select>
         </div>
-        <!--分页-->
-        <div id="pages">
+        <div><input type="button" value="搜索" class="btn_search" onclick="seachforallL()"></div>
+        <!--第一步:点击增加进行一个把cost表中的name存到session中-->
+        <input type="button" value="增加" class="btn_add" onclick="findCost()"/>
+    </div>
+    <!--删除的操作提示-->
+    <div id="operate_result_info" class="operate_success">
+        <img src="../images/close.png" onclick="this.parentNode.style.display='none';"/>
+        删除成功！
+    </div>
+    <!--数据区域：用表格展示数据-->
+    <div id="data">
+        <table id="datalist">
+            <thead>
+            <tr>
+                <th class="width50">业务ID</th>
+                <th class="width70">账务账号ID</th>
+                <th class="width150">身份证</th>
+                <th class="width70">姓名</th>
+                <th>OS 账号</th>
+                <th class="width50">状态</th>
+                <th class="width100">服务器 IP</th>
+                <th class="width100">资费</th>
+                <th class="width200"></th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
 
-        </div>
-    </form>
+            </tbody>
+
+        </table>
+        <p>业务说明：<br/>
+            1、创建即开通，记载创建时间；<br/>
+            2、暂停后，记载暂停时间；<br/>
+            3、重新开通后，删除暂停时间；<br/>
+            4、删除后，记载删除时间，标示为删除，不能再开通、修改、删除；<br/>
+            5、业务账号不设计修改密码功能，由用户自服务功能实现；<br/>
+            6、暂停和删除状态的账务账号下属的业务账号不能被开通。</p>
+    </div>
+    <!--分页-->
+    <div id="pages">
+
+    </div>
+
 </div>
 <!--主要区域结束-->
 <div id="footer">
@@ -231,7 +231,7 @@
                     var a = "开通";
                     var b = "暂停"
                 }
-                else if (service.status == 1){
+                else if (service.status == 1) {
                     var a = "暂停";
                     var b = "开通"
                 }
@@ -247,9 +247,9 @@
                         "<td>" + service.cost.descr + "</td>" +
 
                         "<td>" +
-                        "<input type='button' value="+ b +" class='btn_pause' onclick='beginser(this);' status="+ a+" change ="+service.serviceId +">" +
-                        "<input type='button' value='修改' class='btn_modify' onclick='updateser(this);' updateid="+ service.serviceId+ ">" +
-                        "<input type='button' value='删除' class='btn_delete' onclick='deleteAccount(this);' delserid="+service.serviceId +">"
+                        "<input type='button' value=" + b + " class='btn_pause' onclick='beginser(this);' status=" + a + " change =" + service.serviceId + ">" +
+                        "<input type='button' value='修改' class='btn_modify' onclick='updateser(this);' updateid=" + service.serviceId + ">" +
+                        "<input type='button' value='删除' class='btn_delete' onclick='deleteAccount(this);' delserid=" + service.serviceId + ">"
                         + "</td>"
 
                         + "</tr>"))
@@ -264,16 +264,16 @@
         var serviceId = $(type).attr("change")
         var status = $(type).attr("status")
         $.ajax({
-            type:"post",
-            url:"/beginser",
-            data:{
-                serid:serviceId,
-                status:status
+            type: "post",
+            url: "/beginser",
+            data: {
+                serid: serviceId,
+                status: status
 
             },
-            success:function (result) {
+            success: function (result) {
                 console.log(result.data)
-                window.location.href="/ser"
+                window.location.href = "/ser"
             }
         })
     }
@@ -282,60 +282,57 @@
     function updateser(type) {
         var serviceId = $(type).attr("updateid")
         $.ajax({
-            type:"post",
-            url:"/changeser",
-            data:{
-                serid:serviceId
+            type: "post",
+            url: "/changeser",
+            data: {
+                serid: serviceId
             },
-            success:function (result) {
+            success: function (result) {
                 console.log(result.data)
-                window.location.href="/sermodi"
+                window.location.href = "/sermodi"
             }
         })
     }
-
-
 
     // 删除
     function deleteAccount(type) {
         var serviceId = $(type).attr("delserid")
 
         $.ajax({
-            url:"/delser",
-            data:{
-                delserid:serviceId
+            url: "/delser",
+            data: {
+                delserid: serviceId
             },
-            success:function (result) {
-                window.location.href="/ser"
+            success: function (result) {
+                window.location.href = "/ser"
             }
         })
     }
-
 
     // 查看
     function see(type) {
         var serviceId = $(type).attr("fid")
         $.ajax({
-            type:"post",
-            url:"/seeser",
-            data:{
-                sid:serviceId
+            type: "post",
+            url: "/seeser",
+            data: {
+                sid: serviceId
             },
-            success:function (result) {
+            success: function (result) {
                 console.log(result.data)
-                window.location.href="/sersee"
+                window.location.href = "/sersee"
             }
 
         })
     }
 
-//  第三步:session中存值后跳转到添加页面
+    //  第三步:session中存值后跳转到添加页面
     function findCost() {
 //        alert("findCost")
         $.ajax({
-            type:"post",
-            url:"/findCost",
-            success:function (result) {
+            type: "post",
+            url: "/findCost",
+            success: function (result) {
 //                alert(result);
                 window.location.href = "/seradd"
             }
@@ -343,7 +340,79 @@
     }
 
 
+    // 搜索
+    function seachforallL() {
+        $("#tbody").children().remove();
 
+        $.ajax({
+            type: "post",
+            url: "/abcd",
+            data: {
+                osUsername:$("#osusername").val(),
+                unixHost:$("#unixHost").val(),
+                idcardNo:$("#idcard").val()
+            },
+            success: function (result) {
+
+                var findAllacc = result.data;
+                for (var i = 0; i < findAllacc.length; i++) {
+                    var service = findAllacc[i];
+
+
+                    if (service.status == 2) {
+                        var c = "删除"
+
+                        $("#tbody").append($("<tr>" +
+                                "<td>" + "<a href='javascript:;' onclick='see(this)' fid=" + service.accountId + ">" + service.serviceId + "</a>" + "</td>" +
+                                "<td>" + service.accountId + "</td>" +
+                                "<td>" + service.account.idcardNo + "</td>" +
+                                "<td>" + service.account.realName + "</td>" +
+                                "<td>" + service.osUsername + "</td>" +
+                                "<td>" + c + "</td>" +
+                                "<td>" + service.unixHost + "</td>" +
+                                "<td>" + service.cost.descr + "</td>" +
+
+                                "<td>" + "</td>"
+
+                                + "</tr>"))
+                    }
+
+                    else {
+                        if (service.status == 0) {
+                            var a = "开通";
+                            var b = "暂停"
+                        }
+                        else if (service.status == 1) {
+                            var a = "暂停";
+                            var b = "开通"
+                        }
+
+                        $("#tbody").append($("<tr>" +
+                                "<td>" + "<a href='javascript:;' onclick='see(this)' fid=" + service.serviceId + ">" + service.serviceId + "</a>" + "</td>" +
+                                "<td>" + service.accountId + "</td>" +
+                                "<td>" + service.account.idcardNo + "</td>" +
+                                "<td>" + service.account.realName + "</td>" +
+                                "<td>" + service.osUsername + "</td>" +
+                                "<td>" + a + "</td>" +
+                                "<td>" + service.unixHost + "</td>" +
+                                "<td>" + service.cost.descr + "</td>" +
+
+                                "<td>" +
+                                "<input type='button' value=" + b + " class='btn_pause' onclick='beginser(this);' status=" + a + " change =" + service.serviceId + ">" +
+                                "<input type='button' value='修改' class='btn_modify' onclick='updateser(this);' updateid=" + service.serviceId + ">" +
+                                "<input type='button' value='删除' class='btn_delete' onclick='deleteAccount(this);' delserid=" + service.serviceId + ">"
+                                + "</td>"
+
+                                + "</tr>"))
+
+
+                    }
+                }
+            }
+
+        })
+
+    }
 
 
 </script>

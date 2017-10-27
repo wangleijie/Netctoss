@@ -325,6 +325,8 @@
       <!--</if>-->
     </where>
   </select>
+
+
   <select id="findByIdcard" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/>
     FROM account WHERE idcard_no = #{idcardNo}

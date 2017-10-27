@@ -70,7 +70,7 @@
     </column>
     <column id="44" parent="29" name="login_passwd">
       <mandatory>1</mandatory>
-      <data-type>varchar(30)|0</data-type>
+      <data-type>varchar(200)|0</data-type>
     </column>
     <column id="45" parent="29" name="status">
       <data-type>char(1)|0</data-type>
