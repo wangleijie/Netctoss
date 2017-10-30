@@ -1,6 +1,6 @@
 package com.lanou.mapper;
 
-import com.lanou.bean.Module;
+import com.lanou.bean.ModuleInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -8,16 +8,19 @@ import java.util.List;
 public interface ModuleInfoMapper {
     int deleteByPrimaryKey(Integer moduleId);
 
-    int insert(Module record);
+    int insert(ModuleInfo record);
 
-    int insertSelective(Module record);
+    int insertSelective(ModuleInfo record);
 
-    Module selectByPrimaryKey(Integer moduleId);
+    ModuleInfo selectByPrimaryKey(Integer moduleId);
 
-    int updateByPrimaryKeySelective(Module record);
+    int updateByPrimaryKeySelective(ModuleInfo record);
 
-    int updateByPrimaryKey(Module record);
+    int updateByPrimaryKey(ModuleInfo record);
+
+    List<ModuleInfo> findModuleInfoListByRoleId(@Param("roleId") Integer roleId);
 
 
-    List<Module> findModulByRoleId(@Param("role_id") Integer id);
+    // 查找所有
+    List<ModuleInfo> findAllModules();
 }

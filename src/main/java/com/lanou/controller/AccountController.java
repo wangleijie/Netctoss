@@ -94,16 +94,16 @@ public class AccountController {
         account.setBirthdate(date);
 
         // 判断身份证
-        IDCard idCard = new IDCard();
-        boolean verify = idCard.Verify(account.getIdcardNo());
-        if (verify == false) {
-            return new AjaxResult(0);
-        } else {
-            accountService.addacc(account);
-            return new AjaxResult(1);
-        }
-
-
+//        IDCard idCard = new IDCard();
+//        boolean verify = idCard.Verify(account.getIdcardNo());
+//        if (verify == false) {
+//            return new AjaxResult(0);
+//        }
+//       else {
+//            accountService.addacc(account);
+//            return new AjaxResult(1);
+//        }
+        return new AjaxResult(account);
     }
 
     // 删除

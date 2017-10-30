@@ -31,12 +31,12 @@
 <!--导航区域开始-->
 <div id="navi">
     <ul id="menu">
-        <li><a href="../index.html" class="index_off"></a></li>
-        <li><a href="../role/role_list.html" class="role_off"></a></li>
-        <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
-        <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
-        <li><a href="../account/account_list.html" class="account_off"></a></li>
-        <li><a href="../services/service_list.html" class="service_on"></a></li>
+        <li><a href="/index" class="index_off"></a></li>
+        <li><a href="/role/role_list" class="role_off"></a></li>
+        <li><a href="/admin/admin_list" class="admin_off"></a></li>
+        <li><a href="/home" class="fee_off"></a></li>
+        <li><a href="/acc" class="account_off"></a></li>
+        <li><a href="/ser" class="service_on"></a></li>
         <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
         <li><a href="../report/report_list.html" class="report_off"></a></li>
         <li><a href="../user/user_info.html" class="information_off"></a></li>
@@ -64,11 +64,13 @@
         </div>
         <div class="text_info clearfix"><span>资费类型：</span></div>
         <div class="input_info">
-            <select class="width150">
-                <option>包 20 小时</option>
-                <option>包 40 小时</option>
-                <option>包 60 小时</option>
-                <option>包月</option>
+
+
+            <select class="width150" id="name">
+                <!--<option>包 20 小时</option>-->
+                <!--<option>包 40 小时</option>-->
+                <!--<option>包 60 小时</option>-->
+                <!--<option>包月</option>-->
             </select>
             <div class="validate_msg_long">请修改资费类型，或者取消修改操作。</div>
         </div>
@@ -96,15 +98,38 @@
 </body>
 <script src="/js/jquery-3.2.1.js"></script>
 <script>
-        function findservicebyid() {
+
+    function updateCost() {
+        $.ajax({
+            type:"post",
+            url:"/find",
+            success:function (result) {
+                for (var i = 0;i<result.data.length;i++){
+//                    var costList = result.data[i];
+                    $("<option></option>").text(result.data[i].name).appendTo($("#name"));
+
+                }
+            }
+        })
+    }
+    updateCost();
+
+
+
+
+
+
+    function findservicebyid() {
             $.ajax({
                 type:"post",
                 url:"/findbySerid",
                 success:function (result) {
                     var service = result.data;
                     $("#serviceid").val(service.serviceId)
-                    $("#osusername").val(service.osUsername)
+                    $("#osUsername").val(service.osUsername)
                     $("#unixHost").val(service.unixHost)
+                    $("#name").val(service.cost.name)
+
                 }
             })
         }
@@ -116,8 +141,11 @@
             url:"/updateser",
             data:{
                 serviceId:$("#serviceid").val(),
-                osUsername:$("#osusername").val(),
-                unixHost:$("#unixHost").val()
+                osUsername:$("#osUsername").val(),
+                unixHost:$("#unixHost").val(),
+                costname:$("#name").val()
+
+
             },
 
             success:function (result) {

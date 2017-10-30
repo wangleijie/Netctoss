@@ -110,11 +110,11 @@ public class ServiceController {
         Cost cost  = costService.findByCostname(costname);
         services.setCostId(cost.getCostId());
         serviceService.addser(services);
-        if (services.getLoginPasswd() != rpassword){
-            return new AjaxResult(0);
-        }
+//        if (services.getLoginPasswd() != rpassword){
+//            return new AjaxResult(0);
+//        }
 
-        return new AjaxResult(1);
+        return new AjaxResult(services);
     }
 
     //添加中通过idcard查找accountId
@@ -201,13 +201,19 @@ public class ServiceController {
         HttpSession session = request.getSession();
         Integer serid = (Integer) session.getAttribute("serid");
         Services services = serviceService.serid(serid);
+        System.out.println(services);
         return new AjaxResult(services);
     }
 
     // 修改Service
     @ResponseBody
     @RequestMapping(value = "/updateser", method = RequestMethod.POST)
-    public void updateser(Services services){
+    public void updateser(Services services,
+                          @RequestParam("costname") String costname){
+
+        // 通过costname查出costid,并存到services中
+        Cost cost  = costService.findByCostname(costname);
+        services.setCostId(cost.getCostId());
         serviceService.updateser(services);
     }
 

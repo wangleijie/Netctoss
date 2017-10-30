@@ -39,11 +39,11 @@
 <div id="navi">
     <ul id="menu">
         <li><a href="/index" class="index_off"></a></li>
-        <li><a href="/role" class="role_off"></a></li>
-        <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
-        <li><a href="/home" class="fee_on"></a></li>
+        <li><a href="/role/role_list" class="role_off"></a></li>
+        <li><a href="/admin/admin_list" class="admin_off"></a></li>
+        <li><a href="/home" class="fee_off"></a></li>
         <li><a href="/acc" class="account_off"></a></li>
-        <li><a href="/ser" class="service_off"></a></li>
+        <li><a href="/ser" class="service_on"></a></li>
         <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
         <li><a href="../report/report_list.html" class="report_off"></a></li>
         <li><a href="../user/user_info.html" class="information_off"></a></li>
@@ -218,8 +218,9 @@
                         "<td>" + service.osUsername + "</td>" +
                         "<td>" + c + "</td>" +
                         "<td>" + service.unixHost + "</td>" +
-                        "<td>" + service.cost.descr + "</td>" +
-
+                        "<td>" + service.cost.descr +
+                        "</td>" +
+                                "已删除 "+
                         "<td>" + "</td>"
 
                         + "</tr>"))
@@ -338,6 +339,9 @@
             }
         })
     }
+
+
+
 
 
     // 搜索

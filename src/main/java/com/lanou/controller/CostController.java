@@ -67,12 +67,12 @@ public class CostController {
         String date = dateFormat.format(now);
         cost.setCreatime(date);
         cost.setStartime(date);
-        if (cost.getBaseDuration() < 600 && cost.getBaseCost() < 100000 && cost.getUnitCost() < 100000) {
-            costService.addNew(cost);
-        } else {
-            System.out.println("...");
-        }
-
+//        if (cost.getBaseDuration() < 600 && cost.getBaseCost() < 100000 && cost.getUnitCost() < 100000) {
+//            costService.addNew(cost);
+//        } else {
+//            System.out.println("...");
+//        }
+        costService.addNew(cost);
         return new AjaxResult(cost);
     }
 

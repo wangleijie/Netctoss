@@ -42,8 +42,8 @@
 <div id="navi">
     <ul id="menu">
         <li><a href="/index" class="index_off"></a></li>
-        <li><a href="/role" class="role_off"></a></li>
-        <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+        <li><a href="/role/role_list" class="role_off"></a></li>
+        <li><a href="/admin/admin_list" class="admin_off"></a></li>
         <li><a href="/home" class="fee_on"></a></li>
         <li><a href="/acc" class="account_off"></a></li>
         <li><a href="/ser" class="service_off"></a></li>
@@ -122,31 +122,6 @@
 <script src="/js/jquery-3.2.1.js"></script>
 
 <script>
-
-    //        function page(pages) {
-    //            var pre = $("<a href='#'>上一页</a>")
-    //            $("#pages").append(pre)
-    //            for (var i =1;i<pages ;i++){
-    //                var a = $("<a href='#'></a>").html(i).attr("num",i).click(prePage)
-    //                $("#pages").append(a)
-    //            }
-    //            var next = $("<a href='#'>下一页</a>")
-    //            $("#pages").append(next)
-    //        }
-    //
-    //
-    //        function prePage() {
-    //            var num = $(this).attr("num")
-    //            $.ajax({
-    //                type:"post",
-    //                url:"/pageinfo",
-    //                data:{
-    //                    no:num,
-    //                    size:null
-    //                },
-    //                success:function (res) {
-    //                    console.log(res)
-
 
     // 分页
     function page() {
@@ -253,46 +228,75 @@
         for (var i = 0; i < findAllCost.length; i++) {
             var cost = findAllCost[i];
 
-
+            if (cost.status == 0) {
 //                var costList = result.list;
 //                console.log(costList)
 //                for (var i = 0; i < costList.length; i++) {
 //                    var cost = costList[i];
 
-            if (cost.status == 0) {
-                var a = "停用";
-                var b = "开启"
-            }
-            else {
-                var a = "开启";
-                var b = "停用"
-            }
+                if (cost.status == 0) {
+                    var a = "停用";
+                    var b = "开启"
+                }
+                else {
+                    var a = "开启";
+                    var b = "停用"
+                }
 
 //                <!--<td><a href="fee_detail.html">包 20 小时</a></td>-->
-            $("#tbody").append($("<tr>" +
-                    "<td>" + cost.costId + "</td>" +
-                    "<td>" + "<a href='javascript:;' onclick='see(this)' fid=" + cost.costId + ">" + cost.name + "</a>" + "</td>" +
-                    "<td>" + cost.baseDuration + "</td>" +
-                    "<td>" + cost.baseCost + "</td>" +
-                    "<td>" + cost.unitCost + "</td>" +
-                    "<td>" + cost.creatime + "</td>" +
-                    "<td>" + cost.startime + "</td>" +
-                    "<td>" + a + "</td>" +
-                    "<td>" +
+                $("#tbody").append($("<tr>" +
+                        "<td>" + cost.costId + "</td>" +
+                        "<td>" + "<a href='javascript:;' onclick='see(this)' fid=" + cost.costId + ">" + cost.name + "</a>" + "</td>" +
+                        "<td>" + cost.baseDuration + "</td>" +
+                        "<td>" + cost.baseCost + "</td>" +
+                        "<td>" + cost.unitCost + "</td>" +
+                        "<td>" + cost.creatime + "</td>" +
+                        "<td>" + cost.startime + "</td>" +
+                        "<td>" + a + "</td>" +
+                        "<td>" +
 //                             "<button value='启用'  onclick='startFee(this)' update="+cost.costId+">"+ b +"</button>"+
-                    "<input type='button' value=" + b + " class='btn_start' onclick='startFee(this)' update=" + cost.costId + " >" +
-                    "<input type='button' value='修改' class='btn_modify' onclick='change(this)' changId=" + cost.costId + " >" +
-                    "<input type='button' value='删除' class='btn_delete' onclick='deleteFee(this)' deleteid=" + cost.costId + ">"
-                    + "</td>"
+                        "<input type='button' value=" + b + " class='btn_start' onclick='startFee(this)' update=" + cost.costId + " >" +
+                        "<input type='button' value='修改' class='btn_modify' onclick='change(this)' changId=" + cost.costId + " >" +
+                        "<input type='button' value='删除' class='btn_delete' onclick='deleteFee(this)' deleteid=" + cost.costId + ">"
+                        + "</td>"
 
-                    + "</tr>"))
+                        + "</tr>"))
+            }
+
+            else {
+
+                if (cost.status == 0) {
+                    var a = "停用";
+                    var b = "开启"
+                }
+                else {
+                    var a = "开启";
+                    var b = "停用"
+                }
+
+//                <!--<td><a href="fee_detail.html">包 20 小时</a></td>-->
+                $("#tbody").append($("<tr>" +
+                        "<td>" + cost.costId + "</td>" +
+                        "<td>" + "<a href='javascript:;' onclick='see(this)' fid=" + cost.costId + ">" + cost.name + "</a>" + "</td>" +
+                        "<td>" + cost.baseDuration + "</td>" +
+                        "<td>" + cost.baseCost + "</td>" +
+                        "<td>" + cost.unitCost + "</td>" +
+                        "<td>" + cost.creatime + "</td>" +
+                        "<td>" + cost.startime + "</td>" +
+                        "<td>" + a + "</td>" +
+                        "<td>" +" 已开通 "
+//                             "<button value='启用'  onclick='startFee(this)' update="+cost.costId+">"+ b +"</button>"+
+//                        "<input type='button' value=" + b + " class='btn_start' onclick='startFee(this)' update=" + cost.costId + " >" +
+//                        "<input type='button' value='修改' class='btn_modify' onclick='change(this)' changId=" + cost.costId + " >" +
+//                        "<input type='button' value='删除' class='btn_delete' onclick='deleteFee(this)' deleteid=" + cost.costId + ">"
+                        + "</td>"
+
+                        + "</tr>"))
+
+            }
+
         }
-
-
-
     }
-
-
 
 
     function see(type) {

@@ -20,17 +20,17 @@
                 divResult.style.display = "none";
         }
 
-            //显示选填的信息项
-            function showOptionalInfo(imgObj) {
-                var div = document.getElementById("optionalInfo");
-                if (div.className == "hide") {
-                    div.className = "show";
-                    imgObj.src = "../images/hide.png";
-                }
-                else {
-                    div.className = "hide";
-                    imgObj.src = "../images/show.png";
-                }
+        //显示选填的信息项
+        function showOptionalInfo(imgObj) {
+            var div = document.getElementById("optionalInfo");
+            if (div.className == "hide") {
+                div.className = "show";
+                imgObj.src = "../images/hide.png";
+            }
+            else {
+                div.className = "hide";
+                imgObj.src = "../images/show.png";
+            }
 
         }
     </script>
@@ -45,12 +45,12 @@
 <!--导航区域开始-->
 <div id="navi">
     <ul id="menu">
-        <li><a href="../index.html" class="index_off"></a></li>
-        <li><a href="../role/role_list.html" class="role_off"></a></li>
-        <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
-        <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
-        <li><a href="../account/account_list.html" class="account_on"></a></li>
-        <li><a href="../services/service_list.html" class="service_off"></a></li>
+        <li><a href="/index" class="index_off"></a></li>
+        <li><a href="/role/role_list" class="role_off"></a></li>
+        <li><a href="/admin/admin_list" class="admin_off"></a></li>
+        <li><a href="/home" class="fee_off"></a></li>
+        <li><a href="/acc" class="account_on"></a></li>
+        <li><a href="/ser" class="service_off"></a></li>
         <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
         <li><a href="../report/report_list.html" class="report_off"></a></li>
         <li><a href="../user/user_info.html" class="information_off"></a></li>
@@ -68,7 +68,7 @@
         <div class="input_info">
             <input type="text" value="" id="name"/>
             <span class="required"></span>
-            <div class="validate_msg_long"></div>
+            <div class="validate_msg_long" id="aname"></div>
         </div>
         <div class="text_info clearfix"><span>身份证：</span></div>
         <div class="input_info">
@@ -80,19 +80,19 @@
         <div class="input_info">
             <input type="text" value="" id="logname"/>
             <span class="required"></span>
-            <div class="validate_msg_long"></div>
+            <div class="validate_msg_long" id="alogname"></div>
         </div>
         <div class="text_info clearfix"><span>密码：</span></div>
         <div class="input_info">
             <input type="password" id="password" onchange="password()"/>
             <span class="required"></span>
-            <div class="validate_msg_long" id="nullpwd"></div>
+            <div class="validate_msg_long" id="apassword"></div>
         </div>
         <div class="text_info clearfix"><span>重复密码：</span></div>
         <div class="input_info">
             <input type="password" id="rpassword" onchange="password()"/>
             <span class="required"></span>
-            <div class="validate_msg_long" id="pwd"></div>
+            <div class="validate_msg_long" id="arpassword"></div>
         </div>
         <div class="text_info clearfix"><span>电话：</span></div>
         <div class="input_info">
@@ -107,13 +107,13 @@
         </div>
         <div id="optionalInfo" class="hide">
             <div class="text_info clearfix"><span>推荐人身份证号码：</span></div>
-            <div class="input_info" >
+            <div class="input_info">
                 <input type="text" id="recom"/>
                 <div class="validate_msg_long"></div>
             </div>
-            <div class="text_info clearfix" ><span>生日：</span></div>
+            <div class="text_info clearfix"><span>生日：</span></div>
             <div class="input_info">
-                <input type="text" value="" readonly class="readonly" id="birthdate" />
+                <input type="text" value="" readonly class="readonly" id="birthdate"/>
             </div>
             <div class="text_info clearfix"><span>Email：</span></div>
             <div class="input_info">
@@ -139,17 +139,17 @@
             <div class="text_info clearfix"><span>通信地址：</span></div>
             <div class="input_info">
                 <input type="text" class="width350" id="address"/>
-                <div class="validate_msg_tiny">50长度以内</div>
+                <div class="validate_msg_tiny"></div>
             </div>
             <div class="text_info clearfix"><span>邮编：</span></div>
             <div class="input_info">
                 <input type="text" id="postcode"/>
-                <div class="validate_msg_long">6位数字</div>
+                <div class="validate_msg_long"></div>
             </div>
             <div class="text_info clearfix"><span>QQ：</span></div>
             <div class="input_info">
                 <input type="text" id="qq"/>
-                <div class="validate_msg_long">5到13位数字</div>
+                <div class="validate_msg_long"></div>
             </div>
         </div>
         <!--操作按钮-->
@@ -175,6 +175,7 @@
         var idcard = $("#idcard").val();
         var logname = $("#logname").val();
         var password = $("#password").val();
+        var rpassword = $("#rpassword").val();
         var tel = $("#tel").val();
         var recom = $("#recom").val();
         var birth = $("#birth").val();
@@ -182,36 +183,61 @@
         var address = $("#address").val();
         var postcode = $("#postcode").val();
         var qq = $("#qq").val();
-        console.log(9999)
 
-        $.ajax({
-            type:"POST",
-            url: "/addacc",
-            data: {
-                realName: name,
-                idcardNo: idcard,
-                loginName: logname,
-                loginPasswd: password,
-                telephone: tel,
-                recommenderId: recom,
-                email: email,
-                gender:$("input[type='radio']:checked").val(),
-                mailaddress: address,
-                occupation:$("#occupation option:selected").val(),
-                zipcode: postcode,
-                qq: qq
-            },
-            success: function (result) {
+        $("#aname").empty();
+        $("#abc").empty();
+        $("#alogname").empty();
+        $("#apassword").empty();
+        $("#arpassword").empty();
 
-                if (result.data == 0){
-                    $("#abc").html("请输入正确的身份证号码格式")
+        if (name.length > 5) {
+            $("#aname").html("请输入长度在5以内的字符")
+        }
+        if (idcard.length != 18){
+            $("#abc").html("请输入正确的身份证号码")
+        }
+
+        if (logname.length>10){
+            $("#alogname").html("请输入长度在10以内的字符")
+        }
+        if (password>8){
+            $("#apassword").html("请输入10以内的数字")
+        }
+        if (password != rpassword){
+            $("#arpassword").html("两次密码必须相同")
+        }
+        else {
+
+
+            $.ajax({
+                type: "POST",
+                url: "/addacc",
+                data: {
+                    realName: name,
+                    idcardNo: idcard,
+                    loginName: logname,
+                    loginPasswd: password,
+                    telephone: tel,
+                    recommenderId: recom,
+                    email: email,
+                    gender: $("input[type='radio']:checked").val(),
+                    mailaddress: address,
+                    occupation: $("#occupation option:selected").val(),
+                    zipcode: postcode,
+                    qq: qq
+                },
+                success: function (result) {
+//                    if (result.data == 0) {
+//                        $("#abc").html("请输入正确的身份证号码格式")
+//                    }
+//                    if (result.data == 1) {
+//                        window.location.href = "/acc"
+//                    }
+
+                    window.location.href = "/acc"
                 }
-                if (result.data == 1){
-                    window.location.href="/acc"
-                }
-
-            }
-        })
+            })
+        }
     }
 
     // 通过身份证号码提取生日日期
